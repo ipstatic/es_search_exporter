@@ -1,0 +1,28 @@
+searches:
+  example:
+    name: 'Long name for Example'
+    index: 'logstash-24hours'
+    query:
+      filtered:
+        query:
+          query_string:
+            analyze_wildcard: false
+            query: failed
+        filter:
+          bool:
+            must:
+            - query:
+                match:
+                  type:
+                    query: syslog_file
+                    type: phrase
+            - query:
+                match:
+                  syslog_program:
+                    query: puppet-agent
+                    type: phrase
+            - range:
+                "@timestamp":
+                  gte: now-5m
+                  lte: now
+            must_not: []

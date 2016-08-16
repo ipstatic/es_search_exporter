@@ -1,0 +1,4 @@
+prometheus_client==0.0.14
+pyyaml==3.11
+requests==2.10.0
+requests-kerberos==0.10.0
