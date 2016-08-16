@@ -1,5 +1,5 @@
 import os
-from distutils.core import setup
+from setuptools import setup
 
 setup(
         name="es_search_exporter",
@@ -12,9 +12,9 @@ setup(
         keywords = "prometheus exporter network monitoring elastic search",
         url = "https://github.com/ipstatic/es_search_exporter",
         scripts = ["scripts/es_search_exporter"],
-        packages=["es_search_exporter"],
-        test_suite="tests",
-        install_requires=["prometheus_client>=0.0.14", "pyyaml>=3.11", "requests>=2.10.0", "requests-kerberos>=0.10.0"],
+        packages = ["es_search_exporter"],
+        test_suite = "tests",
+        install_requires = ["prometheus_client>=0.0.14", "pyyaml>=3.11", "requests>=2.10.0", "requests-kerberos>=0.10.0"],
         classifiers = [
             "Development Status :: 3 - Alpha",
             "Intended Audience :: Information Technology",
