@@ -30,18 +30,18 @@ def collect_es(name, config, host, kerberos, tls):
         raise Exception('Query failed: {}'.format(r.json()))
 
     metrics = {}
-    metrics['results'] = Metric('es_search_{}_results_total'.format(name), 'Number of matching results from Elasticsearch', 'gauge')
-    metrics['results'].add_sample('es_search_{}_results_total'.format(name), value=count, labels=None)
-    metrics['successful'] = Metric('es_search_{}_shards_successful_total'.format(name), 'Number of shards where the query returned successfully', 'gauge')
-    metrics['successful'].add_sample('es_search_{}_shards_successful_total'.format(name), value=successful, labels=None)
-    metrics['failed'] = Metric('es_search_{}_shards_failed_total'.format(name), 'Number of shards where the query failed', 'gauge')
-    metrics['failed'].add_sample('es_search_{}_shards_failed_total'.format(name), value=failed, labels=None)
-    metrics['total'] = Metric('es_search_{}_shards_total'.format(name), 'Number of shards queried', 'gauge')
-    metrics['total'].add_sample('es_search_{}_shards_total'.format(name), value=total, labels=None)
-    metrics['timed_out'] = Metric('es_search_{}_timed_out'.format(name), 'Did the query time out', 'gauge')
-    metrics['timed_out'].add_sample('es_search_{}_timed_out'.format(name), value=timed_out, labels=None)
-    metrics['duration'] = Metric('es_search_{}_duration_seconds'.format(name), 'Time Elasticsearch search took, in seconds', 'gauge')
-    metrics['duration'].add_sample('es_search_{}_duration_seconds'.format(name), value=duration, labels=None)
+    metrics['results'] = Metric('es_search_results_total', 'Number of matching results from Elasticsearch', 'gauge')
+    metrics['results'].add_sample('es_search_results_total', value=count, labels={'search': name})
+    metrics['successful'] = Metric('es_search_shards_successful_total', 'Number of shards where the query returned successfully', 'gauge')
+    metrics['successful'].add_sample('es_search_shards_successful_total', value=successful, labels={'search': name})
+    metrics['failed'] = Metric('es_search_shards_failed_total', 'Number of shards where the query failed', 'gauge')
+    metrics['failed'].add_sample('es_search_shards_failed_total', value=failed, labels={'search': name})
+    metrics['total'] = Metric('es_search_shards_total', 'Number of shards queried', 'gauge')
+    metrics['total'].add_sample('es_search_shards_total', value=total, labels={'search': name})
+    metrics['timed_out'] = Metric('es_search_timed_out', 'Did the query time out', 'gauge')
+    metrics['timed_out'].add_sample('es_search_timed_out', value=timed_out, labels={'search': name})
+    metrics['duration'] = Metric('es_search_duration_seconds', 'Time Elasticsearch search took, in seconds', 'gauge')
+    metrics['duration'].add_sample('es_search_duration_seconds', value=duration, labels={'search': name})
 
     class Collector():
         def collect(self):
