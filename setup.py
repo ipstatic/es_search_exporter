@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
         name="es_search_exporter",
-        version="0.1.0",
+        version="0.2.0",
         author="Jarod Watkins",
         author_email="jarod@42lines.net",
         description = ("Elasticsearch search exporter for the Prometheus monitoring system."),
